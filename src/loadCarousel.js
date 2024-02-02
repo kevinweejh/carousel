@@ -1,4 +1,5 @@
 import { createElement, appendMultipleChildren } from './utils';
+import LaunchImageLoader from './launchImageLoader';
 
 export default () => {
     const container = document.getElementById('content');
@@ -12,4 +13,6 @@ export default () => {
     
     appendMultipleChildren(gallery, prevBtn, imageDisplay, quickNav, nextBtn);
     container.appendChild(gallery);
+
+    LaunchImageLoader();
 }
