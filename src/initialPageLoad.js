@@ -1,6 +1,8 @@
+import LoadCarousel from './loadCarousel';
+
 export default () => {
     const container = document.getElementById('content');
-    container.classList.add("bg-[url('./restaurant.jpg')]", 'h-screen', 'flex', 'flex-col');
+    container.classList.add("bg-[url('./gallery.jpg')]", 'h-screen','bg-cover', 'flex', 'flex-col', 'items-center', 'justify-center');
 
-    const tabBar = document.createElement('div');
+    LoadCarousel();
 }
