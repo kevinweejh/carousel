@@ -1,45 +1,26 @@
-# Restaurant Page
+# Carousel
 
-This project is a practical exploration of Webpack configuration and Tailwind CSS integration, building upon The Odin Project's Restaurant Page. The primary focus is on setting up and understanding the differences in Webpack configurations for development and production environments, as well as integrating Tailwind CSS for styling, and an intro to GitHub Actions. 
-
-Check out the live version here: [Restaurant Page Demo](https://kevinweejh.github.io/restaurant/).
+This project is a practice into creating dynamic UI.
 
 
 ## Project Overview
 
 ### Purpose
 
-This project is designed to familiarize myself with extended Webpack configuration and Tailwind CSS integration. It demonstrates how to handle different build requirements for development and production environments in Webpack and effectively configure Tailwind CSS in a web development project. As an add-on, this project provided an opportunity to learn about deployment via GitHub Actions.
+This carousel will house and display images. It provides functionality for users to scroll through the images by way of arrows on the left and to the right. The circle indicators at the bottom of the image (1) tell users which image they are currently viewing, and (2) provide a means to quickly navigate to another image. Finally, if no user input is detected after 5 seconds, the carousel will advance to the next image automatically. 
 
 ### Key Features
 
-- Use of ES6 modules for JavaScript code organization.
-- Extended Webpack configuration with separate setups for development and production.
-- Integration of Tailwind CSS within the Webpack environment.
-- Use of GitHub Actions to build and deploy to GitHub Pages.
+- Scroll to the previous/next image.
+- View current image position.
+- Quickly navigate to any other image.
+- Automatically scroll through images.
 
 ## Technical Details
 
-### Webpack Configuration
-
-#### webpack.common.js
-
-- Defines the entry point and bundle output settings for the `/dist` directory, including `clean: true` for cleaning the directory on each build.
-- Configuration of the HtmlWebpackPlugin for projects with more complex HTML requirements.
-- Rules for image asset management.
-
-#### webpack.dev.js
-
-- Merges with `webpack.common.js`, adding development-specific settings like devServer configuration.
-- CSS handling rules using `style-loader`, `css-loader`, and `postcss-loader`.
-
-#### webpack.prod.js
-
-- Merges with `webpack.common.js`, employing `MiniCssExtractPlugin` for CSS extraction and `CssMinimizerPlugin` for CSS compression.
-
 ### Optimizations
 
-- Image optimization in both development and production setups.
+- Image compression is done in production using `ImageMinimizerWebpackPlugin`.
 - CSS file extraction and minification in production, using `MiniCssExtractPlugin` and `CssMinimizerPlugin`.
 - Built-in JavaScript minification with `TerserWebpackPlugin`, default with Webpack 5+ out of the box when `mode: 'production'` is set. Note: No additional setup is required for basic usage.
 
@@ -85,49 +66,7 @@ npm run build
 
 ## Usage and Examples
 
-### Deploying using GitHub Actions
-
-This is done by adding a YAML file which really reads as step-by-step instructions for GitHub Actions to perform, as follows: 
-```yml
-# .github/workflows/deploy.yml
-name: Build and Deploy to GitHub Pages
-
-on:                 # Workflow triggered on detection 
-  push:             # of push events made to
-    branches:       # ...     
-      - main        # the main branch
-
-permissions:        # Workflow provided with permission
-  contents: write   # to write changes, e.g. Save generated output files
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout 🛎️                               # Checkout files from repo
-        uses: actions/checkout@v4                       # by using this GitHub Action
-
-      - name: Install Dependencies 🌐                   # Install dependencies 
-        run: npm install                                # by running this command
-
-      - name: Build 🔧                                  # Generate dist directory content
-        run: npm run build                              # by running this command
-
-      - name: Deploy 🚀                                 # Deploy my site
-        uses: JamesIves/github-pages-deploy-action@v4   # by using this GitHub Action
-        with:     
-          folder: dist                                  # by pushing dist directory content
-          branch: gh-pages                              # to the gh-pages branch
-          
-```
-![GitHub Pages deployment](src/githubDeploymentBranchScreenshot.png)
-
-Once this 'workflow' file is committed and pushed to your repo on GitHub, and you have configured your project to deploy using the `gh-pages` branch, the build + deployment process begins automagically. 
-
-And voilà - your project is up on GitHub Pages. Any new changes pushed to the `main` branch will trigger the process to repeat, and GitHub Pages will serve the newly generated contents of the `gh-pages` branch.
-
-![Clickthrough of site UI](src/siteClickthrough.gif)
+![Clickthrough of site UI]()
 
 ## Contribution and Support
 
@@ -141,4 +80,4 @@ For questions regarding the setup and configuration of this project, feel free t
 
 ## Acknowledgements and References
 
-This project draws inspiration from [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-restaurant-page) and utilizes resources from [Tailwind CSS](https://tailwindcss.com/docs/installation) and [Webpack](https://webpack.js.org/guides/) documentation, [GitHub Pages Deploy Action](https://github.com/JamesIves/github-pages-deploy-action) for deployment, along with third-party plugins like [MiniCssExtractPlugin](https://webpack.js.org/plugins/mini-css-extract-plugin/), [css-minimizer-webpack-plugin](https://webpack.js.org/plugins/css-minimizer-webpack-plugin/), and [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/).
+This utilizes resources from [Tailwind CSS](https://tailwindcss.com/docs/installation) and [Webpack](https://webpack.js.org/guides/) documentation, [GitHub Pages Deploy Action](https://github.com/JamesIves/github-pages-deploy-action) for deployment, along with third-party plugins like [MiniCssExtractPlugin](https://webpack.js.org/plugins/mini-css-extract-plugin/), [css-minimizer-webpack-plugin](https://webpack.js.org/plugins/css-minimizer-webpack-plugin/), and [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/).
