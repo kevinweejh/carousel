@@ -1,6 +1,7 @@
 import { getImageCount, setCurrentIndex } from './sharedState';
 import { createElement } from './utils';
 import ReloadImage from './reloadImage';
+import ReloadQuickNavigator from './reloadQuickNavigator';
 
 export default () => {
     const quickNav = document.querySelector("#quickNav");
@@ -13,6 +14,7 @@ export default () => {
         emptyCircleClone.addEventListener("click", () => {
             setCurrentIndex(i);
             ReloadImage();
+            ReloadQuickNavigator();
         })
         quickNav.appendChild(emptyCircleClone);
         if (i == 0) {
