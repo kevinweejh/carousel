@@ -1,5 +1,5 @@
 import { createElement } from './utils';
-import { setImageCount } from './sharedState';
+import { getCurrentIndex, setCurrentIndex, setImageCount } from './sharedState';
 import Bass from './galleryImages/bass.jpg';
 import MoreBass from './galleryImages/moreBass.jpg';
 import EvenMoreBass from './galleryImages/evenMoreBass.jpg';
@@ -17,4 +17,16 @@ export default () => {
 
         imageDisplay.appendChild(image);
     })
+
+    if (!getCurrentIndex()) {
+        setCurrentIndex(0);
+    }
+
+    const currentIndex = getCurrentIndex();
+
+    const imageNodeList = Array.from(imageDisplay.children);
+    imageNodeList.forEach((imageNode) => {
+        imageNode.classList.add('hidden');
+    })
+    imageNodeList[currentIndex].classList.remove('hidden');
 }
